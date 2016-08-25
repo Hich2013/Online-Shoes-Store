@@ -1,0 +1,10 @@
+.main-header {position: relative;z-index: 2;width: 100%; background-color: black}
+.main-header .top.row { padding-top: 30px; padding-bottom: 20px; background: transparent; min-height: 50px; }
+.main-header .top.row  .column-logo-center {background-color: lightblue;}
+.main-header .bottom-row { background: transparent; padding: 7px 0 24px 0; position: relative;}
+.main-header .bottom-row .menu-container.text-center { padding: 0 120px; }
+.main-header .bottom-row .menu-container .main-menu { display: inline-block; }
+.main-header .bottom-row .menu-container .main-menu ul { list-style: none; margin: 10; padding: 0; }
+.main-header .bottom-row .menu-container .main-menu li { display: inline-block; }
+
+

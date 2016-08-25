@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="home_pic">
+    <img class="home_photo" src=@Url.Content("~/Content/home_running.jpeg") width="100.5%">
+    <a class="button" href="/Store/Index/">SHOP NOW</a>
+</div>
+
+<style type="text/css">
+    .home_photo {width:100%;}
+    .home_pic{background-color: black; margin-left: -5px; width:100%;}
+    .button{       position: relative;
+    top: -522px;
+    left: 45%;
+    border: 1px solid #a1a1a1;
+    padding: 20px 50px;
+    background: #dddddd;
+    width: 60px;
+    border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    opacity: 0.5;
+    text-rendering: 96px 58px 60px 44%;
+    text-shadow: blue;
+    font-weight: 700;
+    color: black;}
+    .button:hover{ opacity: 0.2; }
+</style>

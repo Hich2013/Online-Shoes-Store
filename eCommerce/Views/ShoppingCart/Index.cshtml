@@ -1,0 +1,157 @@
+﻿@model eCommerce.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post                
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete }, function () {
+                    window.location.assign('/ShoppingCart/Index');
+                });;
+            }
+        });
+
+        $('tr').each(function (index) {
+            if (index % 2 == 0) {
+                $(this).css('background-color: #c2d6d6');
+            }
+        })
+        $('#update').click(function () {
+            var cartItemsUpdate = [];
+            $("table tr:not(:first)").each(function () {
+                var prodTitle = $(this).find(".item-count input").attr("data-id");
+                var prodQuantity = $(this).find(".item-count input").val();
+                cartItemsUpdate.push({ recordId: prodTitle, quantity: prodQuantity });
+
+            });
+            things = JSON.stringify({ 'cartItemsUpdate': cartItemsUpdate });
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/ShoppingCart/UpdateCart',
+                    data: things,
+                    success: function () {},
+                    failure: function () {}
+                });
+                window.location.assign('/ShoppingCart/Index');
+            })
+    });
+</script>
+<section class="main_content">
+    <h3>
+      <em id="your_cart">Your Cart</em> 
+    </h3>
+     <div id="update-message">
+    </div>
+   <table class="table">
+    <tr class="top_table_row">
+        <th class="top_row">            
+        </th>
+        <th>
+        </th>
+        <th id="price">
+            Price
+        </th>
+        <th id="quantity">
+            Quantity
+        </th>
+        <th id="total">
+            Total
+        </th>
+        <th id="remove">            
+        </th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr class="row" >
+            <td id="prod_img">
+                <img id="product_img" src=@Url.Content(@item.Album.AlbumArtUrl) />
+            </td>
+            <td class="description">
+                @Html.ActionLink(item.Album.Title, "Details", "Store", new { id = item.AlbumId }, null)
+            </td>
+            <td id="item_price">
+                $@item.Album.Price
+            </td>
+            <td class="item-count">
+                <input type="text" id="item-count" data-id="@item.RecordId" value="@item.Count.ToString()" />               
+            </td>
+            <td id="total_price">
+                $@(item.Album.Price * item.Count)
+            </td>
+            <td id="remove">
+                <a href="#" class="RemoveLink" data-id="@item.RecordId"> X </a>
+            </td>
+        </tr>
+    }
+    </table>
+    <div class="subtotal">
+        Subtotal  $@Model.CartSubTotal
+    </div> 
+
+    <p class="checkout">
+        @Html.ActionLink("Review", "Review", "ShoppingCart")
+    </p>  
+    <div id="continue_shopping">
+        @Html.ActionLink("Continue Shopping", "Index", "Store")
+    </div>
+    <div id="update">UPDATE CART</div>
+
+</section>
+<style type="text/css">
+    #update{ cursor:pointer; font-family: Georgia, Times, "Times New Roman", serif;  margin-top: 6%; float: right; padding-right: 6%; padding-top: -8%; margin-top: 0%; border: solid 1px #cccccc; background-color: #a1a178;  padding: 12px 6px 9px 8px;}
+    #remove{padding-left: 4%;}
+    .RemoveLink{text-decoration: none; font-family: cursive; font-size: larger; color: black;}
+    #item-count{ width: 16%; margin-left: 29%;}
+    .description{padding-left: 5%; padding-right: 14%;}
+    #product_img{padding-right: 100px}
+    .main_content{padding-left: 9%; padding-bottom: 9%; padding-top: 5%; padding-right:7%;}
+    .table{width: 94%; border: solid 1px #c2d6d6;border-collapse: collapse;}
+    .top_table_row{    background-color: #c2d6d6;font-family: Georgia, Times, "Times New Roman", serif;}
+    .top_row{padding-bottom: 53px;}
+    #total{padding-right: 2%;}
+    #prod_img{ width: 17%;}
+    #product_img{ max-width: 76%;   max-height: 94%;}
+    #item_price{    padding-left: 1%;font-family: Georgia, Times, "Times New Roman", serif;}
+    .item-count{padding-left: 2%;    font-family: Georgia, Times, "Times New Roman", serif;}
+    #total_price{padding-left: 1%;font-family: Georgia, Times, "Times New Roman", serif;}
+    #continue_shopping a{    text-decoration: none;
+    font-weight: bolder;
+    font-size: larger;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    color: black;
+    padding-top: 20px;
+    padding-right: 14px;
+    padding-bottom: 18px;
+    padding-left: 13px;
+    border: solid 1px;
+    color: white;
+    background-color: #86592d;}
+    .subtotal{ padding-bottom: 29px; padding-top: 18px; margin-left: 89%; width: 140px;  float: right; margin-right: 6%; font-family: Georgia, Times, "Times New Roman", serif; font-size: larger;}
+    .checkout{float: right;
+    margin-right: 6%;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: larger;}
+    .checkout a{
+        text-decoration: none;
+    color: black;
+    padding: 14% 18% 14% 17%;
+    border: solid 1px #cccccc;
+    background-color: #cccccc;margin-left: 14%;
+    }
+    .description a{text-decoration: none;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    color: black;}
+    .subtotal{    padding-bottom: 17px;
+    margin-right: 6%;
+    margin-left: 84%;}
+    #your_cart{ font-stretch: semi-condensed; font-family: sans-serif; text-transform: uppercase; font-size: large;}
+</style>

@@ -1,0 +1,122 @@
+﻿@model eCommerce.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Remove Previous link when Id = 1
+        if ('@Model.AlbumId' == 1) {
+            $("#previous_product").hide();
+        };
+
+        // Remove next link for last product
+        if ('@Model.AlbumId.ToString()' == '@TempData["count"]')
+        {
+            $("#next_product").hide();
+        };
+
+        $(".submit").click(function () {
+            var query = "/ShoppingCart/AddToCart/" + @Model.AlbumId + "?quantity=" + $("#quantity").val();
+            $.get(query, function () {
+                window.location.href = "/Store/Index";
+            })
+        });
+
+        $("#previous_product").click(function () {
+            var prev_product_id = (@Model.AlbumId -1).toString();
+            var query = "/Store/Details/" + prev_product_id;
+            window.location.assign(query);
+        })
+
+        $("#next_product").click(function () {
+            var next_product_id = (@Model.AlbumId +1).toString();
+            var query = "/Store/Details/" + next_product_id;
+            window.location.assign(query);
+        })
+    });
+
+</script>
+
+<section class="main_content">
+        <div class="previous_next_row">
+            <div class="previous">
+                <div id="previous_product">
+                    Previous Item
+                </div>
+            </div>
+            <div class="next">
+                <a id="next_product">
+                    Next Item
+                </a>
+            </div>
+        </div>
+        <article class="article">
+            <div class="details">
+                <div id="name">
+                    @Html.DisplayFor(model => model.Title)
+                </div>
+                <div id="artist_name">
+                    @Html.DisplayFor(model => model.Artist.Name)
+                </div>
+                <div id="price">
+                    $@Html.DisplayFor(model => model.Price)
+                </div>
+                <div id="cart">
+                        <div class="quantity">
+                            Quantity
+                         <input type="text" id="quantity" value="1"/>
+                        </div>
+                        <div class="submit">
+                                ADD TO CART                            
+                        </div>
+                </div>
+            </div>
+            <div class="article_img">
+                <img id="product_img" alt="@Model.Title" src=@Url.Content(@Model.AlbumArtUrl) />
+            </div>
+        </article>
+</section>
+
+<style type="text/css">
+    .main_content { margin-bottom: 13%; margin-top: 2%;  margin-left: 5%;}
+    .article { display: inline-flex; width: 56%; overflow: hidden;margin-top: 6%;}
+    .details{ float: left; width: 39%;  text-transform: uppercase; margin: 30px;font-family: 'Gotham SSm A', 'Gotham SSm B';}
+    #name {margin-bottom: 9%;  font-family: Georgia, Times, "Times New Roman", serif; font-size: x-large; font-weight: bolder;}
+    #artist_name{margin-bottom: 19%; margin-top: 12%;}
+    #price { margin-bottom: 18%;font-family: fantasy;font-size: x-large;}
+    #cart{ font-family: Georgia, Times, "Times New Roman", serif; text-decoration: none;}
+    #submit { text-decoration: none; font-family: impact;font-size: x-large; }
+    .submit{ font-family: Futura, Impact, Helvetica, Arial, sans-serif;
+    font-weight: initial;
+    font-style: normal;
+    font-size: 24px;
+    color: #ffffff;
+    background: #000000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+     margin: 11% 33% 11% 5%;
+    padding: 4% 10% 4% 9%;
+    cursor: pointer;}
+    .quantity{text-transform: capitalize;}
+    #quantity{width:28%;}
+    #product_img {
+        width: 88%;
+    max-width: 311%;}
+    .previous_next_row{ overflow: hidden;
+    position: relative;
+    margin: auto 0 auto;}
+    .previous{    width: 200px;
+    margin: 0 auto 0 auto;
+    float: left;}
+    .next{float: right;
+    padding-right: 5%;}
+    #previous_product {   cursor:pointer; font-family: Arial, Helvetica, Verdana, Geneva;  font-size: 15px;}
+    #next_product {    cursor:pointer; font-family: Arial, Helvetica, Verdana, Geneva;  font-size: 15px;}
+    #next_product::after{ content:">"; font: 30px 'Consolas'; font-weight:100; }
+    #previous_product::before{ content:"<"; font: 30px 'Consolas'; font-weight:100; }
+   
+</style>
+

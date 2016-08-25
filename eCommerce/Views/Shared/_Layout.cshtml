@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <style type="text/css">
+        html, body {background-color:#e0e0d2; height: 100%}
+        .container_body_content {  width: 100.3%; background-color:black; margin-bottom: -1.9%}
+        .main-header {margin-top: -50px; position: relative;z-index: 2;width: 100.3%; background-color: black; padding-top: 10px; padding-right: 8px; margin-left:-0.3%;}
+       .main-header .top-row { padding-top:30px;padding-bottom:20px;background:transparent; min-height:50px;}
+       .main-header .bottom-row { background: transparent; padding: 0px 0 13px 18px; position: relative;}
+       .main-header .bottom-row .menu-container.text-center { padding: 0 120px; }
+        .column-logo-center { padding-bottom: 10px;}
+       .main-header .bottom-row .menu-container .main-menu { display: inline-block; font-family: 'Lato', sans-serif; font-style: normal; text-transform: uppercase; font-weight: bold;padding-left: 19%;
+    font-size: small;}
+       .main-header .bottom-row .front-nav .nav-item {float: left;  padding-left: 64px; padding-bottom:10px;}
+       .main-header .bottom-row .front-nav .nav-item a {display: block; color: white; text-align: center; padding: 7px 14px 7px; text-decoration: none;}
+       .nav-item  a:hover {border-bottom: 2px solid thick; border-bottom-color:aqua;}
+        .dropdown-content {display: none;position: absolute; background-color: black; min-width: 130px; margin-left: -27px; margin-top: 10px;}
+        #dropdown:hover .dropdown-content { display: block; }
+        .dropBtn { height: 36px;}
+        .login_register{float: right; margin-right: 78px;}
+        .nav-line-top {color: white; width: 59%; margin-left: 21%; margin-top: 2%; margin-bottom: -4px;}
+        .nav-line-bottom {color: white; width: 60%; margin-top: -4px;}
+        .logo_pic {margin-left: 0%; margin-top: -12px; margin-bottom: -75px; float: left; height: 162px; width: 240px; padding-bottom: 14px;}
+        .footer { position: relative;  margin-top: -150px; height: 150px; clear: both; padding-top: 20px; width:100.3%; float:left;}
+        .footer_titles {font-family: Impact, Charcoal, sans-serif; color: white; margin-top:68%}
+        .info_list{font-family: Century Gothic, sans-serif; color: white; list-style-type: none; padding-right: 29px;}
+        #bottom_list1{ margin-left: -44px; margin-bottom: 13px;margin-top: 26px;}
+        #bottom_list2{margin-left:-50px;}
+        #bottom_list3{margin-left:-54px; margin-top: 10px; margin-bottom: 85px; margin-bottom: 18px;}
+        #footer_store{float: left; color: white; margin-left: 38%; margin-top: -49px;padding-top:2%}
+        #footer_info{float: left; color: white; padding-left: 38px;margin-top:-2.2%;}
+        #main{ overflow:auto; padding-bottom: 169px; width: 100.3%;}
+        #footer_subscribe{ float: right;  color: white; padding-right: 5%;margin-top:-0.6%;}
+        footer{ overflow: hidden; background-color: black;margin-top:-1%}
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-row">
+            <div class="column-logo-center">                
+                <a href="Home/Index"><img class="logo_pic" src= @Url.Content("~/Content/logosite.jpg") height="350"/></a>                
+            </div>
+            
+            @Html.Partial("_LoginPartial")
+           
+        </div>
+        <hr class="nav-line-top">
+        <div class="bottom-row">
+           <div class="row">                
+            <div class="menu-container text-center">
+               <div class="main-menu">                  
+                       <ul class="front-nav">
+                           <li class="nav-item"> @Html.ActionLink("Home", "Index", "Home")</li>                          
+                           <li class="nav-item" id="dropdown">
+                               @Html.ActionLink("Store", "Index", "Store")
+                               <div class="dropdown-content">
+                                   <a href="/Store/Browse?genre=jazz" class="dropBtn">Jazz</a>
+                                   <a href="#" class="dropBtn">Link 2</a>
+                                   <a href="#" class="dropBtn">Link 3</a>
+                               </div>
+                           </li>                     
+                           <li class="nav-item"> @Html.ActionLink("About", "About", "Home")</li>                         
+                           <li class="nav-item"> @Html.ActionLink("Contact", "Contact", "Home")</li>
+                       </ul>                             
+               </div> 
+            </div>
+          </div>
+            <hr class="nav-line-bottom">
+        </div>
+       
+    </header>    
+    <div class="container_body_content">
+        <div id="main" class="container clear-top">
+        @RenderBody()
+        </div>
+    </div>
+
+    <div class="footer">
+        <footer>
+            <div id="footer_info">
+                <p class="footer_titles">&copy; @DateTime.Now.Year - Running </p>
+            </div>
+            <div id="footer_store">
+                <p class="footer_titles">STORE</p>
+                <ul class="info_list">
+                    <li id="bottom_list1">About</li>
+                    <li id="bottom_list2">Contact</li>
+                    <li id="bottom_list3">Facebook</li>
+                </ul>
+            </div>
+            <div id="footer_subscribe">
+                <p class="footer_titles">SUBSCRIBE</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+﻿@model eCommerce.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Review";
+}
+
+<h2>Review Your Order</h2>
+
+<section>
+  <table class="items">
+  @foreach (var item in Model.CartItems)
+  {
+    <tr class="row">
+        <td id="count">
+            @item.Count
+        </td>
+        <td id="prod_img">
+            <img id="product_img" src=@Url.Content(@item.Album.AlbumArtUrl) />
+        </td>
+        <td class="description">
+            @Html.ActionLink(item.Album.Title, "Details", "Store", new { id = item.AlbumId }, null)
+        </td>
+         <td id="total_price">
+            $@(item.Album.Price * item.Count)
+        </td>       
+    </tr>
+  }
+  </table>
+  <hr id="first_line">
+  <table class="sub_ship">
+    <tr id="subttoal">
+        <td class="subtotal"> Subtotal </td>
+        <td id="subtotal_amnt"> $@Model.CartSubTotal</td>
+    </tr>
+    <tr id="shipping">
+        <td class="shipping">Shipping</td>
+        <td id="shipping_amnt"> - </td>
+    </tr>
+  </table>
+  <hr id="second_line">
+  <table class="total">
+    <tr >
+        <td id="total">Total</td>
+        <td id="total_amnt">$@Model.CartSubTotal</td>
+    </tr>
+  </table>
+    <div class="continue"><a href="/Checkout/AddressAndPayment"> Place Order </a></div>
+</section>
+
+<style type="text/css">
+    section{width: 60; padding-bottom: 10%;  padding-left: 10%;}
+    #prod_img{ height: 78px;width:19%}
+    h2 { padding-bottom: 3%; padding-top: 2%; padding-left: 2%; font-family: sans-serif; font-style: italic;}
+    #product_img{ width: 84%;}
+    .description a { text-decoration: none; color: black;font-family: Georgia, Times, "Times New Roman", serif}
+    #second_line{ width: 42.5%; margin-left: 11%;}
+    .sub_ship{ width:100%}
+    #subttoal{padding-left:4%}
+    #second_line{  margin-left: 0%; width: 100%;}
+    #subtotal_amnt{float:right;font-family: Georgia, Times, "Times New Roman", serif}
+    #shipping_amnt{padding-left: 91%;}
+    #total_amnt{ float:right;padding-left: 65%;font-family: Georgia, Times, "Times New Roman", serif}
+    section{ padding-bottom: 10%;}
+    .total{ width: 100%;}
+    #total{padding-right:17%;font-family: Georgia, Times, "Times New Roman", serif}
+    .subtotal{font-family: Georgia, Times, "Times New Roman", serif}
+    .shipping{padding-top:2%; font-family: Georgia, Times, "Times New Roman", serif}
+    #total_price{font-family: Georgia, Times, "Times New Roman", serif; float: right; padding-top: 33%;}
+    .continue a{  float: right; border: solid 1px #a3a3c2; margin-top: 4%; padding: 1% 2% 1% 2%; text-decoration: none; color: black; font-family: Georgia, Times, "Times New Roman", serif;
+    background-color: #a3a3c2;}
+
+</style>
