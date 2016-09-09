@@ -73,19 +73,19 @@
     {
         <tr class="row" >
             <td id="prod_img">
-                <img id="product_img" src=@Url.Content(@item.Album.AlbumArtUrl) />
+                <img id="product_img" src=@Url.Content(@item.Product.ProductArtUrl) />
             </td>
             <td class="description">
-                @Html.ActionLink(item.Album.Title, "Details", "Store", new { id = item.AlbumId }, null)
+                @Html.ActionLink(item.Product.Title, "Details", "Store", new { id = item.ProductId }, null)
             </td>
             <td id="item_price">
-                $@item.Album.Price
+                $@item.Product.Price
             </td>
             <td class="item-count">
                 <input type="text" id="item-count" data-id="@item.RecordId" value="@item.Count.ToString()" />               
             </td>
             <td id="total_price">
-                $@(item.Album.Price * item.Count)
+                $@(item.Product.Price * item.Count)
             </td>
             <td id="remove">
                 <a href="#" class="RemoveLink" data-id="@item.RecordId"> X </a>

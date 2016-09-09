@@ -14,18 +14,8 @@ namespace eCommerce.Controllers
          // GET: /Store/
         public ActionResult Index()
         {
-            var album1 = storeDB.Albums.Where(c => c.Title == "A Copland Celebration, Vol. I").FirstOrDefault();
-            var album2 = storeDB.Albums.Where(c => c.Title == "Worlds").FirstOrDefault();
-            var album3 = storeDB.Albums.Where(c => c.Title == "For Those About To Rock We Salute You").FirstOrDefault();
-            var album4 = storeDB.Albums.Where(c => c.Title == "Let There Be Rock").FirstOrDefault();
-            var album5 = storeDB.Albums.Where(c => c.Title == "Balls to the Wall").FirstOrDefault();
-            var top5 = new List<Album>();           
-            top5.Add(album1);
-            top5.Add(album2);
-            top5.Add(album3);
-            top5.Add(album4);
-            top5.Add(album5);            
-            return View(top5);
+            var products = storeDB.Products.ToList();           
+            return View(products);
         }
         //
         // GET: /Store/Browse
@@ -33,20 +23,19 @@ namespace eCommerce.Controllers
         {
             if (!string.IsNullOrEmpty(genre))
             {
-                var genreModel = storeDB.Genres.Include("Albums").SingleOrDefault(g => g.Name == genre);
+                var genreModel = storeDB.Genres.Include("Products").SingleOrDefault(g => g.Name == genre);
                 return View(genreModel);
             }
             return RedirectToAction("Index");
-
         }
         //
         // GET: /Store/Details
       public ActionResult Details(int? id)
          {
-            var count = storeDB.Albums.Count();
+            var count = storeDB.Products.Count();
             TempData["count"] = count.ToString();
-            var album = storeDB.Albums.Find(id);
-            return View(album);
+            var Product = storeDB.Products.Find(id);
+            return View(Product);
          }
 
       //
@@ -56,7 +45,25 @@ namespace eCommerce.Controllers
       {
           var genres = storeDB.Genres.ToList();
           return PartialView(genres);
-          //storeDB.Albums.Where(c => (c.Title.Contains("") || c.Genre.Name.Contains(""))).ToList();
+          //storeDB.Products.Where(c => (c.Title.Contains("") || c.Genre.Name.Contains(""))).ToList();
+      }
+
+      // GET: /Store/GenreMenuDropDown
+      [ChildActionOnly]
+      public ActionResult GenreMenuDropDown()
+      {
+          var genres = storeDB.Genres.ToList();
+          return PartialView(genres);
+      }
+
+      public ActionResult Search(string SearchText)
+      {
+          if (!string.IsNullOrEmpty(SearchText))
+          {
+            var Products = storeDB.Products.Where(c => (c.Title.Contains(SearchText) || c.Genre.Name.Contains(SearchText))).ToList();
+            return View(Products);
+          }
+          return View();
       }
     }
 }

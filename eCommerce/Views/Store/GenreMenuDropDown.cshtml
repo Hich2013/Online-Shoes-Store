@@ -1,0 +1,10 @@
+﻿@model IEnumerable<eCommerce.Models.Genre>
+
+    @foreach (var genre in Model)
+    {
+        <a id="dropDown" href="@Url.Action("Browse", "Store", new { Genre = genre.Name })">@genre.Name</a>
+    }
+
+<style type="text/css">
+    #dropDown {height:36px; color:white;}
+</style>

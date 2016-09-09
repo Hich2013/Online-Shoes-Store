@@ -4,7 +4,7 @@
     @foreach (var genre in Model)
     {
        <li id="list_genre">
-            @Html.ActionLink(genre.Name, "Browse", "Store", new { Genre = genre.Name })
+           <a id="dropDown" href="@Url.Action("Browse", "Store", new { Genre = genre.Name })">@genre.Name</a>
       </li>
     }
 </ul>
@@ -15,4 +15,5 @@
     #list_genre a {font-family: Georgia, Times, "Times New Roman", serif; color: black;
     font-size: larger;text-transform: uppercase; font-style: oblique; font-weight: bolder;text-decoration: none;
     padding-right: 15%;}
+    #list_genre a:hover{font-style:normal}
 </style>

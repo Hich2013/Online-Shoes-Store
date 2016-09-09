@@ -15,13 +15,13 @@
             @item.Count
         </td>
         <td id="prod_img">
-            <img id="product_img" src=@Url.Content(@item.Album.AlbumArtUrl) />
+            <img id="product_img" src=@Url.Content(@item.Product.ProductArtUrl) />
         </td>
         <td class="description">
-            @Html.ActionLink(item.Album.Title, "Details", "Store", new { id = item.AlbumId }, null)
+            @Html.ActionLink(item.Product.Title, "Details", "Store", new { id = item.ProductId }, null)
         </td>
          <td id="total_price">
-            $@(item.Album.Price * item.Count)
+            $@(item.Product.Price * item.Count)
         </td>       
     </tr>
   }
@@ -48,24 +48,28 @@
 </section>
 
 <style type="text/css">
-    section{width: 60; padding-bottom: 10%;  padding-left: 10%;}
+    section{    padding-bottom: 10%;
+    padding-right: 44%;    padding-left: 7%;}
     #prod_img{ height: 78px;width:19%}
     h2 { padding-bottom: 3%; padding-top: 2%; padding-left: 2%; font-family: sans-serif; font-style: italic;}
     #product_img{ width: 84%;}
     .description a { text-decoration: none; color: black;font-family: Georgia, Times, "Times New Roman", serif}
     #second_line{ width: 42.5%; margin-left: 11%;}
-    .sub_ship{ width:100%}
+    .sub_ship{width:100%}
     #subttoal{padding-left:4%}
     #second_line{  margin-left: 0%; width: 100%;}
-    #subtotal_amnt{float:right;font-family: Georgia, Times, "Times New Roman", serif}
-    #shipping_amnt{padding-left: 91%;}
+    #subtotal_amnt{    float: right;
+    font-family: Georgia, Times, "Times New Roman", serif;}
+    #shipping_amnt{float: right;}
     #total_amnt{ float:right;padding-left: 65%;font-family: Georgia, Times, "Times New Roman", serif}
     section{ padding-bottom: 10%;}
     .total{ width: 100%;}
     #total{padding-right:17%;font-family: Georgia, Times, "Times New Roman", serif}
     .subtotal{font-family: Georgia, Times, "Times New Roman", serif}
     .shipping{padding-top:2%; font-family: Georgia, Times, "Times New Roman", serif}
-    #total_price{font-family: Georgia, Times, "Times New Roman", serif; float: right; padding-top: 33%;}
+    #total_price{    font-family: Georgia, Times, "Times New Roman", serif;
+    float: right;
+    padding-top: 12%;}
     .continue a{  float: right; border: solid 1px #a3a3c2; margin-top: 4%; padding: 1% 2% 1% 2%; text-decoration: none; color: black; font-family: Georgia, Times, "Times New Roman", serif;
     background-color: #a3a3c2;}
 

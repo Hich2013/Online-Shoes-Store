@@ -1,64 +1,95 @@
 ﻿@{
     ViewBag.Title = "ManageUserRoles";
 }
+<section class="main">
 
-<h2>Manage User Roles</h2>
-@Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+<h2 id="manage">Manage User Roles</h2>
+@Html.ActionLink("Create New Role", "Create", new { @class = "create_role" }) | @Html.ActionLink("Manage User Role", "ManageUserRoles", new { @class = "manage_roles" }) | @Html.ActionLink("List Roles", "Index", new { @class = "manage_roles" })
 <hr />
 
 <h2>Role Add to User</h2>
+<div id="form1">
+    @using (Html.BeginForm("RoleAddToUser", "Roles"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm("RoleAddToUser", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <p>
+            Username : @Html.TextBox("UserName")
+            Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+        </p>
+        <div id="submit_div">
+        <input type="submit" value="Save" />
+        </div>
+    }
+    <hr />
+</div>
 
-    <p>
-        Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+    <h3>Get Roles for a User</h3>
 
-    </p>
+ <div id="form2">
+        @using (Html.BeginForm("GetRoles", "Roles"))
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                Username : @Html.TextBox("UserName")
+                <input type="submit" value="Get Roles for this User" />
+            </p>
+        }
 
-    <input type="submit" value="Save" />
-}
-<hr />
-<h3>Get Roles for a User</h3>
-@using (Html.BeginForm("GetRoles", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    <p>
-        Username : @Html.TextBox("UserName")
-        <input type="submit" value="Get Roles for this User" />
-    </p>
-}
+        @if (ViewBag.RolesForThisUser != null)
+        {
+            <div style="background-color:yellow; width: 14%; padding-left: 2%;">
+                <h3>Roles for this user </h3>
+                <ol>
+                    @foreach (string s in ViewBag.RolesForThisUser)
+                    {
+                        <li>@s</li>
+                    }
+                </ol>
+            </div>
+        }
+ </div>
+    <hr />
+    <h3>Delete A User from a Role</h3>
 
-@if (ViewBag.RolesForThisUser != null)
-{
-    <div style="background-color:yellow;">
-        <h3>Roles for this user </h3>
-        <ol>
-            @foreach (string s in ViewBag.RolesForThisUser)
-            {
-                <li>@s</li>
-            }
-        </ol>
+    <div id="form3">
+        @using (Html.BeginForm("DeleteRoleForUser", "Roles"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <p>
+                Username : @Html.TextBox("UserName")
+                Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+            </p>
+
+            <input type="submit" value="Delete this user from Role" />
+        }
     </div>
-}
+</section>
 
-<hr />
-<h3>Delete A User from a Role</h3>
-
-@using (Html.BeginForm("DeleteRoleForUser", "Roles"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <p>
-        Username : @Html.TextBox("UserName")
-        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
-
-    </p>
-
-    <input type="submit" value="Delete this user from Role" />
-}
-
+    <style type="text/css">
+        main{padding-left:2%; width:79%}
+        form{display:flex;}
+        #form3 {
+            padding-bottom: 7%;
+        }
+        .manage_roles{
+            padding-top:2%;font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: initial;font-weight: 700;  font-size: initial; padding-left:1%
+        }
+        .create_role{ font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: initial; font-weight: 700;font-size: initial; float: left; padding-right:1%}
+        .main{ padding-left: 2%; width:38%}
+        
+        input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px; height:67%;
+    cursor: pointer;}
+         input[type=text], input[type=password] select { padding: 12px 20px; margin: 8px 0; display: inline-block;  border: 1px solid #ccc; border-radius: 4px;box-sizing: border-box;}
+    #submit_div{padding-left:2%}
+    </style>

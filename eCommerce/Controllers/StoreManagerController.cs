@@ -11,7 +11,7 @@ using eCommerce.Filters;
 
 namespace eCommerce.Controllers
 {
-    [CustomAuthorize(Users="Admin")]
+    [CustomAuthorize(Roles="Admin, SuperAdmin")]
     public class StoreManagerController : Controller
     {        
         private MusicStoreEntities db = new MusicStoreEntities();
@@ -19,8 +19,8 @@ namespace eCommerce.Controllers
         // GET: StoreManager
         public ActionResult Index()
         {
-            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).OrderBy(i => i.Artist.Name);
-            return View(albums.ToList());
+            var Products = db.Products.Include(a => a.Brand).Include(a => a.Genre).OrderBy(i => i.Brand.Name);
+            return View(Products.ToList());
         }
 
         // GET: StoreManager/Details/5
@@ -30,18 +30,18 @@ namespace eCommerce.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
-            if (album == null)
+            Product Product = db.Products.Find(id);
+            if (Product == null)
             {
                 return HttpNotFound();
             }
-            return View(album);
+            return View(Product);
         }
 
         // GET: StoreManager/Create
         public ActionResult Create()
         {
-            ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name");
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name");
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");
             return View();
         }
@@ -51,18 +51,18 @@ namespace eCommerce.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Create([Bind(Include = "ProductId,GenreId,BrandId,Title,Price,ProductArtUrl")] Product Product)
         {
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
+                db.Products.Add(Product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            return View(album);
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", Product.BrandId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", Product.GenreId);
+            return View(Product);
         }
 
         // GET: StoreManager/Edit/5
@@ -72,14 +72,14 @@ namespace eCommerce.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
-            if (album == null)
+            Product Product = db.Products.Find(id);
+            if (Product == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            return View(album);
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", Product.BrandId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", Product.GenreId);
+            return View(Product);
         }
 
         // POST: StoreManager/Edit/5
@@ -87,17 +87,17 @@ namespace eCommerce.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Edit([Bind(Include = "ProductId,GenreId,BrandId,Title,Price,ProductArtUrl")] Product Product)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(album).State = EntityState.Modified;
+                db.Entry(Product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            return View(album);
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", Product.BrandId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", Product.GenreId);
+            return View(Product);
         }
 
         // GET: StoreManager/Delete/5
@@ -107,12 +107,12 @@ namespace eCommerce.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
-            if (album == null)
+            Product Product = db.Products.Find(id);
+            if (Product == null)
             {
                 return HttpNotFound();
             }
-            return View(album);
+            return View(Product);
         }
 
         // POST: StoreManager/Delete/5
@@ -120,8 +120,8 @@ namespace eCommerce.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Album album = db.Albums.Find(id);
-            db.Albums.Remove(album);
+            Product Product = db.Products.Find(id);
+            db.Products.Remove(Product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

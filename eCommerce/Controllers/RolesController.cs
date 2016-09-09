@@ -114,12 +114,13 @@ namespace eCommerce.Controllers
                 ApplicationUser user = _context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
                 var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var idResult = um.GetRoles(user.Id);
-
-                // prepopulat roles for the view dropdown
-                var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
-                ViewBag.Roles = list;
+                ViewBag.RolesForThisUser = idResult;
             }
-
+            
+            // prepopulat roles for the view dropdown
+            var list = _context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
+            
             return View("ManageUserRoles");
         }
 

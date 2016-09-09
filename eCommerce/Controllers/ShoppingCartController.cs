@@ -36,14 +36,14 @@ namespace eCommerce.Controllers
 
             if (string.IsNullOrEmpty(quantity))
                 quantity = "1";
-            // Retrieve the album from the database
-            var addedAlbum = storeDB.Albums
-                .Single(album => album.AlbumId == id);
+            // Retrieve the Product from the database
+            var addedProduct = storeDB.Products
+                .Single(Product => Product.ProductId == id);
  
             quantityNumber = Int32.Parse(quantity);
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
-            cart.AddToCart(addedAlbum, quantityNumber);
+            cart.AddToCart(addedProduct, quantityNumber);
 
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
@@ -75,9 +75,9 @@ namespace eCommerce.Controllers
             // Remove the item from the cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
-            string albumName = storeDB.Carts
-                .Single(item => item.RecordId == id).Album.Title;
+            // Get the name of the Product to display confirmation
+            string ProductName = storeDB.Carts
+                .Single(item => item.RecordId == id).Product.Title;
 
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);

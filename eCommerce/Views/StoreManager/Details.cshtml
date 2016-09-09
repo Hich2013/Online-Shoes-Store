@@ -1,4 +1,4 @@
-﻿@model eCommerce.Models.Album
+﻿@model eCommerce.Models.Product
 
 @{
     ViewBag.Title = "Details";
@@ -6,27 +6,27 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Album</h4>
+<div class="container">
+    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Artist.Name)
+        <dt class="title">
+            Brand
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Artist.Name)
+            @Html.DisplayFor(model => model.Brand.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre.Name)
+        <dt class="title">
+            Genre
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Genre.Name)
         </dd>
 
-        <dt>
+        <dt class="title">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 
@@ -34,7 +34,7 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
 
-        <dt>
+        <dt class="title">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
 
@@ -42,17 +42,31 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AlbumArtUrl)
+        <dt class="title">
+            Image URL
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumArtUrl)
+            @Html.DisplayFor(model => model.ProductArtUrl)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style type="text/css">
+    .container{width:30%; padding-left:5%; padding-bottom:2%}
+     .title{color:brown;font-family: Georgia, Times, "Times New Roman", serif; font-size:large;    padding-bottom: 3%;
+    padding-top: 2%;}
+    dd { font-family: sans-serif;
+    font-variant: small-caps;
+    font-size: large;}
+    p{padding-left: 4%;
+    padding-bottom: 6%;
+    font-size: larger;}
+    p a{    color: black;
+    font-family: serif;}
+    h4{font-size:larger}
+</style>

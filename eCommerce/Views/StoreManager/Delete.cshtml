@@ -1,17 +1,45 @@
-﻿@model eCommerce.Models.Album
+﻿@model eCommerce.Models.Product
 @{
     ViewBag.Title = "Delete";
 }
 <h2>Delete Confirmation</h2>
-<p>
-    Are you sure you want to delete the album titled
+<p id="message">
+    Are you sure you want to delete the Product titled
     <strong>@Model.Title</strong>?
 </p>
 @using (Html.BeginForm()) {
     <p>
         <input type="submit" value="Delete" />
     </p>
-    <p>
+    <p id="back_to_list">
         @Html.ActionLink("Back toList", "Index")
     </p>
 }
+
+<style type="text/css">
+    #message{padding-left:1%;    font-family: monospace;
+    font-size: large;}
+    #back_to_list{ padding: 7px 13px 205px 19px;
+    font-size: larger;}
+    #back_to_list a{color:black}
+    form{ padding-left: 1%;}
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        height: 67%;
+        cursor: pointer;
+    }
+
+    input[type=text], select {
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>

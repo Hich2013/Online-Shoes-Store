@@ -1,4 +1,4 @@
-﻿@model eCommerce.Models.Album
+﻿@model eCommerce.Models.Product
 
 @{
     ViewBag.Title = "Details";
@@ -8,31 +8,31 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // Remove Previous link when Id = 1
-        if ('@Model.AlbumId' == 1) {
+        if ('@Model.ProductId' == 1) {
             $("#previous_product").hide();
         };
 
         // Remove next link for last product
-        if ('@Model.AlbumId.ToString()' == '@TempData["count"]')
+        if ('@Model.ProductId.ToString()' == '@TempData["count"]')
         {
             $("#next_product").hide();
         };
 
         $(".submit").click(function () {
-            var query = "/ShoppingCart/AddToCart/" + @Model.AlbumId + "?quantity=" + $("#quantity").val();
+            var query = "/ShoppingCart/AddToCart/" + @Model.ProductId + "?quantity=" + $("#quantity").val();
             $.get(query, function () {
                 window.location.href = "/Store/Index";
             })
         });
 
         $("#previous_product").click(function () {
-            var prev_product_id = (@Model.AlbumId -1).toString();
+            var prev_product_id = (@Model.ProductId -1).toString();
             var query = "/Store/Details/" + prev_product_id;
             window.location.assign(query);
         })
 
         $("#next_product").click(function () {
-            var next_product_id = (@Model.AlbumId +1).toString();
+            var next_product_id = (@Model.ProductId +1).toString();
             var query = "/Store/Details/" + next_product_id;
             window.location.assign(query);
         })
@@ -58,8 +58,8 @@
                 <div id="name">
                     @Html.DisplayFor(model => model.Title)
                 </div>
-                <div id="artist_name">
-                    @Html.DisplayFor(model => model.Artist.Name)
+                <div id="Brand_name">
+                    @Html.DisplayFor(model => model.Brand.Name)
                 </div>
                 <div id="price">
                     $@Html.DisplayFor(model => model.Price)
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="article_img">
-                <img id="product_img" alt="@Model.Title" src=@Url.Content(@Model.AlbumArtUrl) />
+                <img id="product_img" alt="@Model.Title" src=@Url.Content(@Model.ProductArtUrl) />
             </div>
         </article>
 </section>
@@ -85,7 +85,7 @@
     .article { display: inline-flex; width: 56%; overflow: hidden;margin-top: 6%;}
     .details{ float: left; width: 39%;  text-transform: uppercase; margin: 30px;font-family: 'Gotham SSm A', 'Gotham SSm B';}
     #name {margin-bottom: 9%;  font-family: Georgia, Times, "Times New Roman", serif; font-size: x-large; font-weight: bolder;}
-    #artist_name{margin-bottom: 19%; margin-top: 12%;}
+    #Brand_name{margin-bottom: 19%; margin-top: 12%;}
     #price { margin-bottom: 18%;font-family: fantasy;font-size: x-large;}
     #cart{ font-family: Georgia, Times, "Times New Roman", serif; text-decoration: none;}
     #submit { text-decoration: none; font-family: impact;font-size: x-large; }

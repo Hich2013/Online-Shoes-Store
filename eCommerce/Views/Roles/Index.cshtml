@@ -11,8 +11,8 @@
         <div>
         @foreach (var role in Model)
         {
-        <p>
-            <strong>@role.Name | </strong>
+        <p class="roles">
+            <strong id="role">@role.Name </strong>
             <span onclick="return confirm('Are you sure to delete?')"><a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color:red;">Delete</a></span> |
             @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
         </p>
@@ -21,9 +21,15 @@
    </div>
  </div>
 <style type="text/css">    
-    #main{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: smaller; overflow: hidden; background-color: white; padding-bottom: 15%; padding-top: 1%;}
-    #create{ font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: initial; font-weight: 700;font-size: initial; float: left; padding-right:1%}
-    #manage{ font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: initial;font-weight: 700;  font-size: initial; padding-left:1%}
+    .roles{padding-top:2%}
+    #wrap{padding-left:1%}
+    #role{  padding-right: 1%;padding-top:2%;
+    font-size: initial;
+    font-weight: initial;}
+    #main{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: smaller; overflow: hidden; padding-bottom: 15%; padding-top: 1%;}
+    #create{ font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: 700;font-size: initial; float: left; padding-right:1%}
+    #manage{ font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: 700;  font-size: initial; padding-left:1%}
+    h2{padding-bottom:1%}
 </style>
 
 

@@ -52,6 +52,6 @@ C:\Users\Hichem\Desktop\eCommerce\eCommerce\bin\Microsoft.Owin.Security.Twitter.
 C:\Users\Hichem\Desktop\eCommerce\eCommerce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.dll
 C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.pdb
-C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.csprojResolveAssemblyReference.cache
 C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.Migrations.InitialCreate.resources
 C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.csproj.GenerateResource.Cache
+C:\Users\Hichem\Desktop\eCommerce\eCommerce\obj\Debug\eCommerce.csprojResolveAssemblyReference.cache

@@ -43,17 +43,17 @@ namespace eCommerce.Models
             return context.Session[CartSessionKey].ToString();
         }
 
-        public void AddToCart(Album album, int quantity)
+        public void AddToCart(Product Product, int quantity)
         {
-            // Get the matching cart and album instances
-            var cartItem = storeDB.Carts.SingleOrDefault(c => c.cartId == ShoppingCartId && c.AlbumId == album.AlbumId);
+            // Get the matching cart and Product instances
+            var cartItem = storeDB.Carts.SingleOrDefault(c => c.cartId == ShoppingCartId && c.ProductId == Product.ProductId);
 
             if (cartItem == null)
             {
                 // Create new cart item if no cart item exists
                 cartItem = new Cart
                 {
-                    AlbumId = album.AlbumId,
+                    ProductId = Product.ProductId,
                     cartId = ShoppingCartId,
                     Count = quantity,
                     DateCreated = DateTime.Now
@@ -68,7 +68,7 @@ namespace eCommerce.Models
             storeDB.SaveChanges();
         }
 
-        /*public void UpdateCart(Album album, int quantity)
+        /*public void UpdateCart(Product Product, int quantity)
         {
             var cartItem = storeDB.Carts.SingleOrDefault()
         }*/
@@ -127,13 +127,13 @@ namespace eCommerce.Models
         }
         public decimal GetSubTotal()
         {
-            // Multiply album price by count of that album to get 
-            // the current price for each of those albums in the cart
-            // sum all album price totals to get the cart total
+            // Multiply Product price by count of that Product to get 
+            // the current price for each of those Products in the cart
+            // sum all Product price totals to get the cart total
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.cartId == ShoppingCartId
                               select (int?)cartItems.Count *
-                              cartItems.Album.Price).Sum();
+                              cartItems.Product.Price).Sum();
 
             return total ?? decimal.Zero;
         }
@@ -153,13 +153,13 @@ namespace eCommerce.Models
             {
                 var orderDetail = new OrderDetail
                { 
-                    AlbumId = item.AlbumId,
+                    ProductId = item.ProductId,
                     OrderId = order.OrderId,
-                    UnitPrice = item.Album.Price,
+                    UnitPrice = item.Product.Price,
                     Quantity = item.Count
                 };
                 // Set the order total of the shopping cart
-                orderTotal += (item.Count * item.Album.Price);
+                orderTotal += (item.Count * item.Product.Price);
 
                 storeDB.OrderDetails.Add(orderDetail);
 

@@ -4,18 +4,28 @@
 }
 
 <h2>Create Role</h2>
-@Html.ActionLink("List Roles", "Index") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+@Html.ActionLink("List Roles", "Index", new { @class= "list_roles"}) | @Html.ActionLink("Manage User Role", "ManageUserRoles", new { @class = "manage_roles" })
 <hr />
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<div class="form">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <div>
-        Role name
-    </div>
-    <p>
-        @Html.TextBox("RoleName")
-    </p>
-    <input type="submit" value="Save" />
+        <div id="name">
+         Role name
+        </div>
+        <p>
+            @Html.TextBox("RoleName")
+        </p>
+        <input type="submit" value="Save" />
 }
+</div>
+
+<style type="text/css">
+    h2{ padding-bottom: 1%;}
+    .form{ padding-bottom: 23%; background-color:#e0e0d2; padding-top: 2%;padding-left:2%}
+    .list_roles{ padding-left: 2%; font-size: larger; font-weight: 900;}
+    .manage_roles{ font-size: larger; font-weight: 900;}
+    #name{ font-size: larger; font-weight: 700;}
+</style>

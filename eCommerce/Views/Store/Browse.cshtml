@@ -4,14 +4,140 @@
     ViewBag.Title = "Browse";
 }
 
-<h2>Browsing Genre: @Model.Name</h2>
-<ul>
-    @foreach (var album in Model.Albums)
-    {
-        <li>
-            @Html.ActionLink(album.Title, "Details", new { id = album.AlbumId })
-        </li>
+<h2>Section > @Model.Name</h2>
+<div class="genre_list">
+    @{Html.RenderAction("GenreMenu", "Store");}
+</div>
+<section class="main_content">
+    <div class="row">
+        <section class="row">
+            <ul class="product_grid">
+                @foreach (var product in Model.Products)
+                {
+                    <li class="product_item">
+                        <div class="image_wrapper">
+                            <a id="display" href="@Url.Action("Details", "Store", new { id = product.ProductId })">
+                                <img id="product_img" alt="@product.Title" src=@Url.Content(@product.ProductArtUrl) />
+                            </a>
+                        </div>
+                        <hr class="item_hr">
+                        <div class="caption">
+                            <p id="product_title">
+                                <a id="display" href="@Url.Action("Details", "Store", new { id = product.ProductId })">
+                                    @product.Title
+                                </a>
+                            </p>
+                            <p id="product_price">$@product.Price</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+    </div>
+</section>
+
+<style type="text/css">
+    .main_content {
+        background-color: #e0e0d2;
+        margin-bottom: 30px;
+        padding-bottom: 36px;
+        padding-top: 2%;
     }
-</ul>
+
+    .genre_list {
+        float: left;
+        padding-top: 1%;
+        padding-right: 1%;
+    }
+
+        .genre_list a:hover {
+            font-style: normal;
+        }
+
+    .product_grid {
+            overflow: hidden;
+            width: 76%;
+            padding: 0;
+            list-style: none;
+            margin-top: -1px;
+            padding-left: 5%;
+    }
+
+    .product_item {
+        float: left;
+        position: relative;
+        max-width: 22%;
+        text-align: center;
+        padding-left: 31px;
+        padding-right: 51px;
+        padding-bottom: 27px;
+        padding-top: 33px;
+        margin: 38px 14px 5px 10px;
+    }
+
+    .caption {
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .item_hr {
+        width: 70%;
+    }
+
+    #product_title {
+        text-decoration: none;
+        padding-left: 65px;
+    }
+
+    #product_img {
+        height: 186px;
+        width: 250px;
+    }
+
+    #product_price {
+        padding-right: 21px;
+        margin-top: -11px;
+        font-weight: bolder;
+        font-size: larger;
+        font-family: Georgia, Times, "Times New Roman", serif;
+    }
+
+    #display {
+        display: block;
+        display: block;
+        max-width: 67%;
+        margin-left: 4px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: Georgia, Times, "Times New Roman", serif;
+        color: black;
+    }
+
+    .product_list_body {
+        background-color: white;
+        padding-bottom: 98px;
+    }
+
+    .product_list {
+        list-style-type: none;
+    }
+
+    .product a {
+        text-decoration: none;
+    }
+
+    .product_item:hover {
+        border: 1px solid #786c6c;
+    }
+    h2{   
+         margin-bottom: -2px;
+         padding-left: 17%;
+         padding-top: 2%;
+         text-transform: uppercase;
+         text-decoration: underline;
+         font-size:larger
+    }
+
+</style>
 
 

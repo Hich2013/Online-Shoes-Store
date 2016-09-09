@@ -1,4 +1,4 @@
-﻿@model List<eCommerce.Models.Album>
+﻿@model List<eCommerce.Models.Product>
 
 @{
     ViewBag.Title = "Store";
@@ -14,14 +14,14 @@
             { 
             <li class="product_item">
                 <div class="image_wrapper">
-                    <a id="display" href="@Url.Action("Details", "Store", new { id = product.AlbumId })">
-                        <img id="product_img" alt="@product.Title" src=@Url.Content(@product.AlbumArtUrl) />
+                    <a id="display" href="@Url.Action("Details", "Store", new { id = product.ProductId })">
+                        <img id="product_img" alt="@product.Title" src=@Url.Content(@product.ProductArtUrl) />
                     </a>
                 </div>
                 <hr class="item_hr">
                  <div class="caption">
                    <p id="product_title">
-                       <a id="display" href="@Url.Action("Details", "Store", new { id = product.AlbumId })">
+                       <a id="display" href="@Url.Action("Details", "Store", new { id = product.ProductId })">
                            @product.Title</a>
                    </p>
                    <p id="product_price">$@product.Price</p>
@@ -37,25 +37,34 @@
     .main_content{background-color: #e0e0d2; margin-bottom: 30px; padding-bottom: 36px; padding-top:2%;}
     .genre_list{float: left;
     padding-top: 4%; padding-right: 1%;}
+    .genre_list a:hover{font-style:normal}
     .product_grid{    overflow: hidden;
     width: 76%;
     padding: 0;
     list-style: none;
     padding-left: 5%;}
-    .product_item{ float: left; position: relative; max-width: 22%; text-align: center; padding-left: 31px; padding-right: 51px;
+    .product_item{     float: left;
+    position: relative;
+    max-width: 22%;
+    text-align: center;
+    padding-left: 31px;
+    padding-right: 51px;
     padding-bottom: 27px;
     padding-top: 33px;
-    margin: 38px 14px 5px 10px;}
+    margin: 38px 14px 5px 10px;
+    height: 274px;
+    width: 40%;}
     .caption{text-decoration:none;text-align:center;}
     .item_hr { width:70%;}
-    #product_title{text-decoration: none; padding-left: 65px;}
-    #product_img{height: 186px; width: 250px;}
+    #product_title{text-decoration: none;}
+    #product_img{    height: 143px;
+    width: 208px;}
     #product_price{    padding-right: 21px;
     margin-top: -11px;
     font-weight: bolder;
     font-size: larger;
     font-family: Georgia, Times, "Times New Roman", serif;}
-    #display{display:block; display: block; max-width: 67%; margin-left: 4px; text-decoration: none;
+    #display{display:block; display: block; max-width: 88%; margin-left: 4px; text-decoration: none;
     text-transform: uppercase;
     font-family: Georgia, Times, "Times New Roman", serif;
     color: black;}
@@ -63,5 +72,6 @@
     .product_list{list-style-type:none;}
     .product a {text-decoration:none;}
     .product_item:hover{border: 1px solid #786c6c;}
+    .image_wrapper{height: 155px;}
 </style>
 

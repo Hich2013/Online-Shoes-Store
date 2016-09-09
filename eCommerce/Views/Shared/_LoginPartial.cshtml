@@ -5,13 +5,23 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
+    <ul class="navbar-right">
+        <li id="hello">
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li id="logoff"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
+    <ul id="admin-stuff">
+    @if (User.IsInRole("SuperAdmin") || @User.IsInRole("Admin"))
+    {
+        <li class="store_manager"> @Html.ActionLink("Store Manager", "Index", "StoreManager")</li>
+    }
+    @if (User.IsInRole("SuperAdmin"))
+    {
+        <li class="security"> @Html.ActionLink("Security", "Index", "Roles")</li>
+    }
+    </ul>
 }
 else
 {
@@ -23,4 +33,23 @@ else
     #cart_logo{ width: 2%;  float: right; margin-right: 2%; margin-top: 1.5%; padding-right: 2%; padding-top: 0.3%;}
     .login a {color: white; text-decoration:none; font-family:Georgia, Times, "Times New Roman", serif; float: right; margin-right: -27px; margin-top:26px; text-transform:uppercase; padding-right: 2%;}
     .register a {color:white; text-decoration: none; font-family: Georgia, Times, "Times New Roman", serif;float: right;margin-right: 48px; margin-top: 26px; text-transform:uppercase;    padding-left: 3%;}
+    .navbar-right{     display: inline-flex;
+    float: right;
+    width: 41%;
+    padding-left: 39%;}
+    ul .section-children li.layout {
+        display: inline-block;
+    }
+    #hello a{padding-right: 30%; text-decoration: none; color: white; font-family: Georgia, Times, "Times New Roman", serif;
+    width: 41%;}
+    #hello{width:64%}
+    #logoff a{text-decoration: none; color: white; font-family: Georgia, Times, "Times New Roman", serif;}
+    .security a{color: white; font-family: Georgia, Times, "Times New Roman", serif;text-transform:uppercase}
+    .store_manager a{    color: white;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    text-transform: uppercase;margin-bottom:-5%}
+    #admin-stuff{display: inline-flex;
+    margin-top: -1%;
+    padding-left: 25%;width:27%}
+    .store_manager{    padding-right: 7%; width:135%}
 </style>
