@@ -8,9 +8,9 @@ using System.Data.Entity.Validation;
 
 namespace eCommerce.Models
 {
-    public class SampleData : DropCreateDatabaseAlways<MusicStoreEntities>
+    public class SampleData : DropCreateDatabaseAlways<StoreEntities>
     {
-        protected override void Seed(MusicStoreEntities context)
+        protected override void Seed(StoreEntities context)
         {
             var genres = new List<Genre>
             {
@@ -31,7 +31,7 @@ namespace eCommerce.Models
 
             new List<Product>
             {
-                new Product { Title = "Casual F11", Genre = genres.Single(g => g.Name == "Men"), Price = 55.90M, Brand = Brands.Single(a => a.Name == "Adidas"), ProductArtUrl = "~/Content/Images/adidas_casual_men_1.jpg" },
+                new Product { Title = "Casual F11", Genre = genres.Single(g => g.Name == "Men"), Price = 55.90M, Brand = Brands.Single(a => a.Name == "Adidas"), ProductArtUrl = "~/Content/Images/nike_women_casual_1.jpg" },
                 new Product { Title = "Casual F12", Genre = genres.Single(g => g.Name == "Men"), Price = 59.90M, Brand = Brands.Single(a => a.Name == "Adidas"), ProductArtUrl = "~/Content/Images/adidas_casual_men_2.jpg" },
                 new Product { Title = "Casual F13", Genre = genres.Single(g => g.Name == "Men"), Price = 50.00M, Brand = Brands.Single(a => a.Name == "Adidas"), ProductArtUrl = "~/Content/Images/adidas_casual_men_3.jpg" },
                 new Product { Title = "Casual F09", Genre = genres.Single(g => g.Name == "Women"), Price = 51.00M, Brand = Brands.Single(a => a.Name == "Adidas"), ProductArtUrl = "~/Content/Images/adidas_casual_women_1.jpg" },

@@ -14,7 +14,7 @@ namespace eCommerce.Controllers
     [CustomAuthorize(Roles="Admin, SuperAdmin")]
     public class StoreManagerController : Controller
     {        
-        private MusicStoreEntities db = new MusicStoreEntities();
+        private StoreEntities db = new StoreEntities();
 
         // GET: StoreManager
         public ActionResult Index()

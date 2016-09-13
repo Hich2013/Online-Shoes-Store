@@ -10,7 +10,7 @@ namespace eCommerce.Controllers
     [Authorize]
     public class CheckoutController : Controller
     {
-        MusicStoreEntities storeDB = new MusicStoreEntities();
+        StoreEntities storeDB = new StoreEntities();
         // GET: Checkout
         public ActionResult AddressAndPayment()
         {

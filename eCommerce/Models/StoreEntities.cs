@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace eCommerce.Models
 {
-    public class MusicStoreEntities : DbContext 
+    public class StoreEntities : DbContext 
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Genre> Genres { get; set; }

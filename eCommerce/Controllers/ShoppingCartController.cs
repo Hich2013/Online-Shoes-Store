@@ -10,7 +10,7 @@ namespace eCommerce.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        MusicStoreEntities storeDB = new MusicStoreEntities();
+        StoreEntities storeDB = new StoreEntities();
         //
         // GET: /ShoppingCart/
         public ActionResult Index()
