@@ -5,6 +5,8 @@
    
 ![one_shoes](https://cloud.githubusercontent.com/assets/19439711/23486704/7a91202e-fe96-11e6-9845-93568d845002.png)
 
+![shoes_2](https://cloud.githubusercontent.com/assets/19439711/23486905/a2308d26-fe97-11e6-9fe8-4da44cca3787.png)
+
 
 ## Main Features 
 
