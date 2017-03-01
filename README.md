@@ -14,38 +14,38 @@
 
 ### Views 
  
-     * Home (`home.chstml`)
-    	* Login and Register  (`login.chstml`, `register.chtml`)
-    	* Product listing (`index.chstml`)
-    	* Product Detail (`details.chstml`)
-    	* Shopping Cart Summary (`cart.chstml`)
-    	* Review Shopping Cart (`review.chstml`) 
-    	* Checkout (`checkout.chstml`)
-    	* Store Manager 
-    	* Role Management 
+* Home (`home.chstml`)
+* Login and Register  (`login.chstml`, `register.chtml`)
+* Product listing (`index.chstml`)
+* Product Detail (`details.chstml`)
+* Shopping Cart Summary (`cart.chstml`)
+* Review Shopping Cart (`review.chstml`) 
+* Checkout (`checkout.chstml`)
+* Store Manager 
+* Role Management 
 
 ### Controllers
      
-    * Inventory Manager  (```/StoreManager```) 
-      This allows to perform Create, Delete, Read, and Update operations on the existing inventory.
-      This operation is only accessible to a user with role `admin` or `super Admin`  
+* Inventory Manager  (```/StoreManager```) 
+ This allows to perform Create, Delete, Read, and Update operations on the existing inventory.
+ This operation is only accessible to a user with role `admin` or `super Admin`  
 
-    * Shopping Cart (```/ShoppingCart```)
-      This app includes a shopping cart feature that allows to select items and update the 
-      quantity at any time. A logo of the updated quantity is displayed at all times in all views as 
-      part of the shared layout. 
+* Shopping Cart (```/ShoppingCart```)
+This app includes a shopping cart feature that allows to select items and update the 
+quantity at any time. A logo of the updated quantity is displayed at all times in all views as 
+part of the shared layout. 
 
-    * Roles Manager (```/Roles```)
-      This application builds on top of Microsoft Asp.NET Identity module (that allows for persisting users and roles) to 
-      allow for Role-Based Security 
-      Roles can be listed, created, deleted, and updated (A sample route would be: `/Roles/Edit/5`). 
-      This will also show a list of users/roles association. 
-      Roles can also be added/deleted to users under `\DeleteRoleForUser` or `\AddRoleToUser` by selecting the role 
-      and providing the username of the user.
+* Roles Manager (```/Roles```)
+This application builds on top of Microsoft Asp.NET Identity module (that allows for persisting users and roles) to 
+allow for Role-Based Security 
+Roles can be listed, created, deleted, and updated (A sample route would be: `/Roles/Edit/5`). 
+This will also show a list of users/roles association. 
+Roles can also be added/deleted to users under `\DeleteRoleForUser` or `\AddRoleToUser` by selecting the role 
+and providing the username of the user.
 
-    * Account Manager
-      This allows for users to be registered and allows admin users to delete or modify users. It uses the built-in 
-      Microsoft Asp .net Identity module for salt/hashing and authorization filtering.
+* Account Manager
+This allows for users to be registered and allows admin users to delete or modify users. It uses the built-in 
+Microsoft Asp .net Identity module for salt/hashing and authorization filtering.
 
 ### Migrations 
 
