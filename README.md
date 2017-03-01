@@ -2,6 +2,9 @@
 
    Folowing my friend's interest in setting up an online business, I decided to craft a simple yet effective platform for his users to purchase products. This is a light-weight web app 
    designed in ASP .NET MVC 4.5 as the back-end framework and jQuery/Ajax, HTML and CSS/BootStrap as front-end. 
+   
+![one_shoes](https://cloud.githubusercontent.com/assets/19439711/23486704/7a91202e-fe96-11e6-9845-93568d845002.png)
+
 
 ## Main Features 
 
