@@ -68,8 +68,7 @@ Any feedback is greatly appreciated.
 This will improve testability and help the solution become scalable.    
 
 ## Authors 
-- Hichem Rehouma - Initial work https://github.com/Hich2013
-
+- Hichem Rehouma - Initial work 
 ## Acknowledgements 
 - Hat tip to Microsoft ASP .NET for the excellent API documentation and templates 
 - My friend Maksim who is an e-commerce lover and inspired me to look into the e-commerce technology trends   
