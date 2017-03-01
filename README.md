@@ -12,7 +12,7 @@
    - Entity Framework 
        
 
- ### Views 
+### Views 
  
      * Home (`home.chstml`)
     	* Login and Register  (`login.chstml`, `register.chtml`)
@@ -24,7 +24,7 @@
     	* Store Manager 
     	* Role Management 
 
- ### Controllers
+### Controllers
      
     * Inventory Manager  (```/StoreManager```) 
       This allows to perform Create, Delete, Read, and Update operations on the existing inventory.
@@ -49,30 +49,30 @@
 
 ### Migrations 
 
-    There is currently a migration file under the migration folder that seeds a collection of sample products into the database at run-time.
+There is currently a migration file under the migration folder that seeds a collection of sample products into the database at run-time.
 
 ## Installing / Deployment
-      This application currently runs on my local environment (localhost) and SQL Server. If you would like to run it on your machine and any environment all you need is: 
-       * Install Visual Studio if it is not already (Express is free!)
-       * Clone the repository 
-       * Change the `connection string` in the `web.config` file to point to your server/database 
-       * Give it a build and Run! 
+This application currently runs on my local environment (localhost) and SQL Server. If you would like to run it on your machine and any environment all you need is: 
+* Install Visual Studio if it is not already (Express is free!)
+* Clone the repository 
+* Change the `connection string` in the `web.config` file to point to your server/database 
+* Give it a build and Run! 
 
 ## Contributing 
-    	Please read the Installing step and feel free to fork and clone. If you encounter a bug, please feel free to submit a Pull Request! 
-    	Any feedback is greatly appreciated. 
+Please read the Installing step and feel free to fork and clone. If you encounter a bug, please feel free to submit a Pull Request! 
+Any feedback is greatly appreciated. 
     
 ## ToDo: 
-    	- Switch to using bootstrap for some of the views 
-    	- Adding a repository layer and use dependency injection to resolve repositories into controllers 
-    	This will improve testability and help the solution become scalable.    
+- Switch to using bootstrap for some of the views 
+- Adding a repository layer and use dependency injection to resolve repositories into controllers 
+This will improve testability and help the solution become scalable.    
 
 ## Authors 
-     - Hichem Rehouma - Initial work https://github.com/Hich2013
+- Hichem Rehouma - Initial work https://github.com/Hich2013
 
 ## Acknowledgements 
-     - Hat tip to Microsoft ASP .NET for the excellent API documentation and templates 
-     - My friend Maksim who is an e-commerce lover and inspired me to look into the e-commerce technology trends   
+- Hat tip to Microsoft ASP .NET for the excellent API documentation and templates 
+- My friend Maksim who is an e-commerce lover and inspired me to look into the e-commerce technology trends   
 
 
 
